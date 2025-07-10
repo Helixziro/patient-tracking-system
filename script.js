@@ -1,30 +1,54 @@
-const form = document.getElementById('patientForm');
-const tableBody = document.querySelector('#patientTable tbody');
+// Registration validation
+document.addEventListener("DOMContentLoaded", () => {
+  const registerForm = document.getElementById("registerForm");
+  const loginForm = document.getElementById("loginForm");
+  const appointmentForm = document.getElementById("appointmentForm");
 
-let count = 1;
+  if (registerForm) {
+    registerForm.addEventListener("submit", (e) => {
+      const email = document.getElementById("email").value;
+      const contact = document.getElementById("contact").value;
+      const password = document.getElementById("password").value;
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Invalid email format.");
+        e.preventDefault();
+      }
 
-  const name = document.getElementById('name').value;
-  const age = document.getElementById('age').value;
-  const disease = document.getElementById('disease').value;
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
+        e.preventDefault();
+      }
 
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td>${count++}</td>
-    <td>${name}</td>
-    <td>${age}</td>
-    <td>${disease}</td>
-    <td><button class="delete-btn">Delete</button></td>
-  `;
+      if (!/^\d{10}$/.test(contact)) {
+        alert("Contact number must be 10 digits.");
+        e.preventDefault();
+      }
+    });
+  }
 
-  tableBody.appendChild(tr);
-  form.reset();
-});
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      const msg = document.getElementById("loginMsg");
 
-tableBody.addEventListener('click', function(e) {
-  if (e.target.classList.contains('delete-btn')) {
-    e.target.closest('tr').remove();
+      if (email === "user@example.com" && password === "123456") {
+        msg.textContent = "Login successful!";
+        msg.style.color = "green";
+      } else {
+        msg.textContent = "Invalid credentials!";
+        msg.style.color = "red";
+        e.preventDefault();
+      }
+    });
+  }
+
+  if (appointmentForm) {
+    appointmentForm.addEventListener("submit", (e) => {
+      alert("Appointment booked successfully!");
+      e.preventDefault();
+    });
   }
 });
