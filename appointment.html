@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book Appointment</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav><h1>Book an Appointment</h1></nav>
+
+  <main>
+    <form id="appointmentForm">
+      <input type="text" id="patientName" placeholder="Your Name" required />
+      <select id="doctor" required>
+        <option value="">Select Doctor</option>
+        <option>Dr. Smith</option>
+        <option>Dr. Mehta</option>
+        <option>Dr. Asha</option>
+      </select>
+      <input type="date" id="date" required />
+      <input type="time" id="time" required />
+      <button type="submit">Book Appointment</button>
+    </form>
+  </main>
+
+  <footer>© 2025 Patient Tracking System</footer>
+  <script src="script.js"></script>
+</body>
+</html>
